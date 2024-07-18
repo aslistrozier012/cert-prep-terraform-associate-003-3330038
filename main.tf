@@ -44,11 +44,12 @@ resource "aws_security_group" "rds-demo-security-group" {
   }
 }
 
-resource "aws_security_group_rule_ingress" "rds-demo-sg-rule"{
+resource "aws_security_group_rule" "rds-demo-sg-rule"{
 security_group_id = aws_security_group.rds-demo-security_group.id
-  cidr_ipv4         = aws_vpc.rds-demo-vpc.cidr_block
+  type              = ingress
+  #cidr_ipv4         = aws_vpc.rds-demo-vpc.cidr_block
   from_port         = 1433
-  ip_protocol       = "tcp"
+  protocol       = "tcp"
   to_port           = 1433
 
 }
