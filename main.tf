@@ -1,3 +1,4 @@
+/*
 resource "aws_vpc" "rds-demo-vpc" {
   cidr_block       = "10.0.0.0/16"
   instance_tenancy = "default"
@@ -53,6 +54,10 @@ resource "aws_security_group_rule" "rds-demo-sg-rule" {
   security_group_id = aws_security_group.rds-demo-security-group.id
 }
 
+output "aws_security_group"{
+  value = aws_security_group.rds-demo-security-group.id
+}
+*/
 resource "aws_db_parameter_group" "rds-demo-pg" {
   name        = "rds-demo-pg"
   family      = "sqlserver-ex-15.0"
@@ -70,8 +75,10 @@ resource "aws_db_instance" "rds-demo" {
   engine               = "sqlserver-ex"
   engine_version       = "15.00.4375.4.v1"
   instance_class       = "db.t3.micro"
-  username             = var.rds-db-username
-  password             = var.rds-db-password
-  parameter_group_name = aws_db_parameter_group.rds-demo-pg.name
+  username             = var.db-username
+  password             = var.db-password
+  vpc_security_group_ids = [aws_security_group.demo-rds-sg.id]
   skip_final_snapshot  = true
+  availability_zone    = "us-east-1a"
+  #parameter_group_name = aws_db_parameter_group.rds-demo-pg.name
 }
