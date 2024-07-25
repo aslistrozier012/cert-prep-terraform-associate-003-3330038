@@ -4,7 +4,7 @@ resource "aws_vpc" "demo-vpc" {
 
 }
 resource "aws_subnet" "demo-subnet1" {
-   vpc_id     = aws_vpc.rds-demo-vpc.id
+   vpc_id     = aws_vpc.demo-vpc.id
   cidr_block = "10.0.1.0/24"
   availability_zone = "us-east-1a"
   
@@ -18,7 +18,7 @@ resource "aws_subnet" "demo-subnet2" {
 
 resource "aws_db_subnet_group" "demo-subnet-group" {
   name       = "main"
-  subnet_ids = [aws_subnet.rds-demo-subnet1.id, aws_subnet.rds-demo-subnet2.id]
+  subnet_ids = [aws_subnet.demo-subnet1.id, aws_subnet.demo-subnet2.id]
 
   tags = {
     Name = "demo-subnet-group"

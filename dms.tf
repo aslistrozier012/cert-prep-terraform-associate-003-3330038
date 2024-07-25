@@ -63,7 +63,7 @@ resource "aws_dms_replication_subnet_group" "demo-dms-subnetgroup" {
   replication_subnet_group_description = "Subenet group for dms"
   replication_subnet_group_id          = "demo-dms-subnetgroup-id"
 
-  subnet_ids = [aws_subnet.rds-demo-subnet1.id, aws_subnet.rds-demo-subnet2.id]
+  subnet_ids = [aws_subnet.demo-subnet1.id, aws_subnet.demo-subnet2.id]
 
   tags = {
     Name = "example-id"
@@ -74,7 +74,7 @@ resource "aws_dms_replication_instance" "demo-dms-repinstance" {
   replication_instance_id   = "demo-dms-repinstance"
   replication_instance_class = "dms.t3.micro"
   allocated_storage         = 20
-  vpc_security_group_ids    = [aws_security_group.ec2_sg.id]
+  vpc_security_group_ids    = [aws_security_group.demo-ec2-sg.id]
   publicly_accessible       = false
   apply_immediately            = true
   auto_minor_version_upgrade   = true
