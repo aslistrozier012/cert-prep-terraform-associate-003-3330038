@@ -66,21 +66,23 @@ resource "aws_dms_replication_subnet_group" "demo-dms-subnetgroup" {
   subnet_ids = [aws_subnet.demo-subnet1.id, aws_subnet.demo-subnet2.id]
 
   tags = {
-    Name = "example-id"
+    Name = "demo-dms-subnetgroup"
   }
 }
 
 resource "aws_dms_replication_instance" "demo-dms-repinstance" {
-  replication_instance_id   = "demo-dms-repinstance"
-  replication_instance_class = "dms.t3.micro"
-  allocated_storage         = 20
-  vpc_security_group_ids    = [aws_security_group.demo-ec2-sg.id]
-  publicly_accessible       = false
+  replication_instance_id      = "demo-dms-repinstance"
+  replication_instance_class   = "dms.t3.micro"
+  allocated_storage            = 20
+  vpc_security_group_ids       = [aws_security_group.demo-ec2-sg.id]
+  publicly_accessible          = false
   apply_immediately            = true
   auto_minor_version_upgrade   = true
   availability_zone            = "us-east-1c"
   engine_version               = "3.5.2"
   multi_az                     = false
+  kms_key_arn                  = aws_kms_key.demo-kms-key.arn
+
 }
 
 

@@ -71,14 +71,17 @@ resource "aws_db_parameter_group" "rds-demo-pg" {
 
 resource "aws_db_instance" "rds-demo" {
   allocated_storage    = 20
-  db_name              = "rds-demo"
+  #db_name              = "rds-demo"
   engine               = "sqlserver-ex"
   engine_version       = "15.00.4375.4.v1"
-  instance_class       = "db.t3.micro"
+  instance_class       = var.db_instance_type
   username             = var.db-username
   password             = var.db-password
   vpc_security_group_ids = [aws_security_group.demo-rds-sg.id]
   skip_final_snapshot  = true
   availability_zone    = "us-east-1a"
+  storage_encrypted    = true
+  kms_key_id           = aws_kms_key.demo-kms-key.arn
+
   #parameter_group_name = aws_db_parameter_group.rds-demo-pg.name
 }

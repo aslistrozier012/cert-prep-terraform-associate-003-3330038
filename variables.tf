@@ -10,21 +10,10 @@ variable "db-password" {
   default = "demordspass1"
 }
 
-/*
-variable "db_username" {
-  description = "Database username"
-  type        = string
-}
-
-variable "db_password" {
-  description = "Database password"
-  type        = string
-  sensitive   = true
-}
-
 variable "ami_id" {
   description = "AMI ID for EC2 instance"
   type        = string
+  default     = "ami-016a78934c9cfa396"
 }
 
 variable "instance_type" {
@@ -38,4 +27,3 @@ variable "db_instance_type" {
   type        = string
   default     = "db.t3.micro"
 }
-*/
