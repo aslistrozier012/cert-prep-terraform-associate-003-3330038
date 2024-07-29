@@ -25,7 +25,7 @@ resource "aws_db_subnet_group" "demo-subnet-group" {
   }
 }
 
-resource "aws_security_group" "demo-ec2-sg" {
+resource "aws_security_group" "demo-rds-sg" {
   vpc_id = aws_vpc.demo-vpc.id
 
   ingress {
@@ -44,7 +44,7 @@ resource "aws_security_group" "demo-ec2-sg" {
 
 }
 
-resource "aws_security_group" "demo-rds-sg" {
+/*resource "aws_security_group" "demo-rds-sg" {
   vpc_id = aws_vpc.demo-vpc.id
 
   ingress {
@@ -61,3 +61,4 @@ resource "aws_security_group" "demo-rds-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+*/

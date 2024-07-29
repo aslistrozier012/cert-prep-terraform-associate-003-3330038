@@ -27,7 +27,10 @@ resource "aws_iam_policy" "demo-dms-policy" {
           "rds:DescribeDBInstances",
           "rds:Connect",
           "rds:DescribeDBSnapshots",
-          "rds:DescribeDBSubnetGroups"
+          "rds:DescribeDBSubnetGroups",
+          "kms:Decrypt",
+          "kms:Encrypt",
+          "kms:GenerateDataKey"
         ]
         Resource = "*"
       },
@@ -74,7 +77,7 @@ resource "aws_dms_replication_instance" "demo-dms-repinstance" {
   replication_instance_id      = "demo-dms-repinstance"
   replication_instance_class   = "dms.t3.micro"
   allocated_storage            = 20
-  vpc_security_group_ids       = [aws_security_group.demo-ec2-sg.id]
+  vpc_security_group_ids       = [aws_security_group.demo-rds-sg.id]
   publicly_accessible          = false
   apply_immediately            = true
   auto_minor_version_upgrade   = true

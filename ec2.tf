@@ -1,3 +1,5 @@
+/*
+--if an ec2 instance needed to be created, but it's not needed for migration
 resource "aws_instance" "ec2-demoserver1"{
    ami                  = var.ami_id
    instance_type        = var.instance_type
@@ -9,3 +11,4 @@ resource "aws_instance" "ec2-demoserver1"{
 
 }
 }
+*/

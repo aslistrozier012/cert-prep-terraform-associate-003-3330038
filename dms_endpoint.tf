@@ -4,9 +4,9 @@ resource "aws_dms_endpoint" "ec2-source" {
   engine_name   = "sqlserver"
   username       = var.db-username
   password       = var.db-password
-  server_name     = aws_instance.ec2-demoserver1.private_ip
+  server_name     = aws_instance.ec2-demoserver1.private_ip #insert ec2 server name
   port           = 1433
-  database_name  = "demo-mydatabase"
+  database_name  = "demo-mydatabase" #name of db being migrated
 }
 
 resource "aws_dms_endpoint" "rds-target" {
